@@ -9,14 +9,14 @@ This program will run the main simulation, using sample_board.p by default. If a
 
 This program can be run with a number of flags to load custom boards or change the nature of the simulation.  
 
->-b [name]  
+-b [name]  
 
->>Use the file [name].p in /boards to load the board.  
+>Use the file [name].p in /boards to load the board.  
 
->-w  
+-w  
 
->>Wrap the simulation screen so that cells on the edge of the screen interact  ith those on the opposite edge.  
+>Wrap the simulation screen so that cells on the edge of the screen interact  ith those on the opposite edge.  
 
->-d  
+-d  
 
->>Run the sumulation in debug mode.  
+>Run the sumulation in debug mode.  
