@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """Runs a simulation of Conway's game of life.
 
 This module uses data from 'sample_data.p' by default. New boards can be created by
@@ -10,6 +12,7 @@ List of flags:
 -w              wraps the board instead of having strict edges
 -d              loads the board in debug mode
 """
+
 import os
 import pickle
 import random
