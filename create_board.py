@@ -5,6 +5,7 @@ import os
 import pickle
 import random
 
+
 def print_board(cols):
     """Draw a mockup of the board based on the rows entered so far."""
     # Print top row.
@@ -25,6 +26,7 @@ def print_board(cols):
 
     # Print bottom row.
     print("\t" + "+ " * (cols + 2))
+
 
 def print_screen(filename, cols, e):
     """Print the entire program output to the screen."""
@@ -54,6 +56,7 @@ def print_screen(filename, cols, e):
     if e is not None:
         print(e)
         print()
+
 
 def parse_row(i):
     """Get input for a new row and parse its commands."""
@@ -146,7 +149,7 @@ os.system('cls' if os.name == 'nt' else 'clear')
 board_name = input("Name of board: ").strip()
 
 # Convert board name to a valid filename
-if board_name[2] == "." and board_name[-1] == "p":
+if board_name[-2] == "." and board_name[-1] == "p":
     filename = "boards/" + board_name
 else:
     filename = "boards/" + board_name + ".p"

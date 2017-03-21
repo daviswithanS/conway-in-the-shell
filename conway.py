@@ -1,21 +1,16 @@
 #!/usr/bin/env python3
 """Runs a simulation of Conway's game of life.
 
-This module uses data from 'sample_data.p' by default. New boards can be created by
-using create_board.py and run by using the '-b [name]' flag. If 'sample_data.p' has
-been deleted, or if the board entered is not found, a randomly generated 20x20 board
-will be used instead.
-
-List of flags:
--b [name]       loads a board of that name
--w              wraps the board instead of having strict edges
--d              loads the board in debug mode
+This module uses data from 'sample_board.p' by default. New boards can
+be created using the create_board tool and stored into the boards/ 
+folder. If 'sample_board.p' has been deleted, or if the requested board
+is not found, a randomly generated 20x20 board will be used instead.
 """
 
+import argparse
 import os
 import pickle
 import random
-import sys
 import time
 
 class Screen:
@@ -117,35 +112,6 @@ class Screen:
         print(self.decor * (self.w + 2))
 
 
-def get_flags():
-    """Get and set the flags given in 'sys.argv'."""
-    wrap_mode = False
-    debug_mode = False
-    board_name = "sample_board.p"
-
-    for i, arg in enumerate(sys.argv):
-        if arg == "-w":
-            wrap_mode = True
-        elif arg == "-d":
-            debug_mode = True
-        elif arg == "-b":
-            try:
-                board_name = sys.argv[i+1]
-            except IndexError:
-                print("Invalid board name. Reverting to 'sample_board.p'.")
-                time.sleep(2)
-
-    if wrap_mode == True:
-        print("Will wrap.")
-        time.sleep(1)
-
-    if debug_mode == True:
-        print("Booting to debug mode...")
-        time.sleep(2)
-
-    return wrap_mode, debug_mode, board_name
-
-
 def convert_name(board_name):
     """Convert the given board name into a valid filename."""
     if board_name[-2] == "." and board_name[-1] == "p":
@@ -187,10 +153,23 @@ def refresh_screen(Screen):
     print()
 
 
-wrap_mode, debug_mode, board_name = get_flags()
-board = open_board(board_name)
+# Parse the command-line arguments
+parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=__doc__
+)
 
-game = Screen(board, wrap=wrap_mode, debug=debug_mode)
+parser.add_argument('-w', '--wrap', action='store_true',
+                    help='wrap the game board instead of stopping at edges')
+parser.add_argument('-d', '--debug', action='store_true',
+                    help='load the game in debug mode')
+parser.add_argument('-b', '--board', default='sample_board.p', metavar='NAME',
+                    help='look in /boards and load the board of the given name')
+
+args = parser.parse_args()
+
+board = open_board(args.board)
+game = Screen(board, wrap=args.wrap, debug=args.debug)
 
 # Run the main game loop until the user exits the program.
 while True:
