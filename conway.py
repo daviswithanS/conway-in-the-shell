@@ -13,6 +13,7 @@ import pickle
 import random
 import time
 
+
 class Screen:
     """A class to create a game, update it, and print its current state"""
 
