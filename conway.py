@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """Runs a simulation of Conway's game of life.
 
 This module uses data from 'sample_data.p' by default. New boards can be created by

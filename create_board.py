@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 """Generates a board usable in the conway.py program."""
 
 import os
