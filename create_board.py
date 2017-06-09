@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generates a board usable in the conway.py program."""
+"""Generates a board usable in main life.py program."""
 
 import os
 import pickle
